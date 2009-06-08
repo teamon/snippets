@@ -10,3 +10,13 @@
       return text[0, max_length] + "..." if text.length > max_length
       text
     end
+    def colorize(var, format = nil)
+      color = if var.is_a?(Numeric)
+        var >= 0 ? :green : :red
+      else
+        var ? :green : :red
+      end
+      
+      var = format % var if format
+      '<span style="color: %s">%s</span>' % [color, var]
+    end
